@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="jumbotron text-center">
+    <h1>Instagram Scraper</h1>
+
+    {% if session.logged_in == NULL %}
+        <p class="lead">Please Login with instagram credentials</p>
+        <a href="/login" class="btn btn-success btn-lg">Login</a>
+    {% else %}
+    <p class="lead">Click on scrape to scrape the content</p>  
+    <a href="/scrape" class="btn btn-success btn-lg">scrape</a>
+    {% endif %}
+  </div>
+{% endblock %}

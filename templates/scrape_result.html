@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container">
+      <h2>INFORMATION ABOUT {{ brand }} 's {{ product }}</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>IMAGE</th>
+            <th>LIKE</th>
+            <th>(USER NAME, COMMENT)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for i in range(scraped_data_link|length) %}
+
+        <tr>
+          <td><img src="{{ scraped_data_link['id'+i|string][0][0] }}" alt="Not Found" height="500px" width="500px"></td>
+          <td>{{ scraped_data_link['id'+i|string][0][1] }}</td>
+          <td>
+          {% for j in range(scraped_data_link['id'+i|string][0][2]['id'+i|string]|length) %}
+
+              {% if scraped_data_link['id'+i|string][0][2]['id'+i|string][j|int] != 'No Comments' %}
+
+                {% for k in scraped_data_link['id'+i|string][0][2]['id'+i|string][j|int] %}
+
+                    <table>
+                      <tr>{{scraped_data_link['id'+i|string][0][2]['id'+i|string][j|int]}}</tr>
+                    </table>
+
+                {% endfor %}
+
+              {% else %}
+
+                No Comment
+
+              {% endif %}
+
+          {% endfor %}
+
+          </td>
+        </tr>
+        {% endfor %}
+
+        {% for i in range(scraped_data_link1|length) %}
+        <tr>
+          <td><img src="{{ scraped_data_link1['id'+i|string][0][0] }}" alt=" Not Found" height="400px" width="400px"></td>
+          <td>{{ scraped_data_link1['id'+i|string][0][1] }}</td>
+          <td>
+          {% for j in range(scraped_data_link1['id'+i|string][0][2]['id'+i|string]|length) %}
+
+              {% if scraped_data_link1['id'+i|string][0][2]['id'+i|string][j|int] != 'No Comments' %}
+
+                {% for k in scraped_data_link1['id'+i|string][0][2]['id'+i|string][j|int] %}
+
+                    <table>
+                      <tr>{{scraped_data_link1['id'+i|string][0][2]['id'+i|string][j|int]}}</tr>
+                    </table>
+
+                {% endfor %}
+
+              {% else %}
+
+                No Comment
+
+              {% endif %}
+
+          {% endfor %}
+          </td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+      </table>
+
+
+</div>
+
+{% endblock %}
